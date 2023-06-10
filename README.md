@@ -10,18 +10,33 @@ This project is a Python web application that allows users to search for product
 
 ## Changes Made
 
-- Styling: The application has been styled using a neumorphic design approach, giving it a modern and visually appealing look.
+- Styling: The application has been styled using a neumorphic design approach.
 - Search page: The search page features a centered barcode input field and search button, with a title displayed above them.
 - Results page: The results page showcases the product details in a card-like layout, with clear headings and well-organized sections.
-- Health grade colors: The background color of the health grade pill is dynamically assigned based on the nutriscore grade of the product. The text color is black when the grade is 'C' and the background color is yellow.
+- Health grade colors: The background color of the health grade pill is dynamically assigned based on the nutriscore grade of the product. 
 
 ## How to Run the Application
 
-1. Clone the repository.
-2. Install the required dependencies listed in the `requirements.txt` file.
-3. Set up the necessary configurations, such as the API credentials and database settings.
-4. Run the Django development server.
-5. Access the application in your web browser at `http://localhost:8000`.
+1. **Clone the repository:**
+```shell
+   git clone <repository-url> && cd <repository-directory>
+```
+
+2. **Install the required dependencies:**
+```shell
+    pip install -r requirements.txt
+```
+
+3. **Run the Django development server:**
+```shell
+    python manage.py runserver
+```
+
+
+5. **Access the application:**
+- Open your web browser and visit `http://localhost:8080` to interact with the application.
+
+These instructions assume that you have Python and Django installed on your system. 
 
 ## Credits
 
@@ -29,5 +44,5 @@ This project is a Python web application that allows users to search for product
 - Open Food Facts Python SDK: [https://github.com/openfoodfacts/openfoodfacts-python](https://github.com/openfoodfacts/openfoodfacts-python)
 - Neumorphic CSS styles based on the tutorial by Tomas Credé: [https://tomascrede.com/blog/ultra-neumorphism/](https://tomascrede.com/blog/ultra-neumorphism/)
 
-Feel free to contribute to the project by submitting bug reports or pull requests.
+Feel free to contribute to the project by submitting bug reports or pull requests. Enjoy searching for product details with Open Food Facts Product Search!
 
