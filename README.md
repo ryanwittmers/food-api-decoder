@@ -29,5 +29,5 @@ This project is a Python web application that allows users to search for product
 - Open Food Facts Python SDK: [https://github.com/openfoodfacts/openfoodfacts-python](https://github.com/openfoodfacts/openfoodfacts-python)
 - Neumorphic CSS styles based on the tutorial by Tomas Credé: [https://tomascrede.com/blog/ultra-neumorphism/](https://tomascrede.com/blog/ultra-neumorphism/)
 
-Feel free to contribute to the project by submitting bug reports or pull requests. Enjoy searching for product details with Open Food Facts Product Search!
+Feel free to contribute to the project by submitting bug reports or pull requests.
 
