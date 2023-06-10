@@ -42,7 +42,5 @@ These instructions assume that you have Python and Django installed on your syst
 
 - Open Food Facts API: [https://world.openfoodfacts.org](https://world.openfoodfacts.org)
 - Open Food Facts Python SDK: [https://github.com/openfoodfacts/openfoodfacts-python](https://github.com/openfoodfacts/openfoodfacts-python)
-- Neumorphic CSS styles based on the tutorial by Tomas Credé: [https://tomascrede.com/blog/ultra-neumorphism/](https://tomascrede.com/blog/ultra-neumorphism/)
 
 Feel free to contribute to the project by submitting bug reports or pull requests. Enjoy searching for product details with Open Food Facts Product Search!
-
