@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Search Product</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}?v=1">
+</head>
+<body>
+  <div class="search-container">
+    <div class="form-wrapper">
+      <h1 class="search-heading">Search for Product Details</h2>
+      <form method="post" action="{% url 'search_product' %}">
+        {% csrf_token %}
+        <input type="text" name="barcode" id="barcode" class="search-input" placeholder="Enter barcode" required>
+        <button type="submit" class="search-button">Search</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

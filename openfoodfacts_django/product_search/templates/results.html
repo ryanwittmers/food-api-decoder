@@ -1,0 +1,71 @@
+{% load static %}
+
+<!-- results.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Product Results</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}?v=1">
+</head>
+<body>
+  <div class="container">
+    <div class="results-container">
+      <h1 class="results-heading">Product Details</h2>
+      <div class="results-info">
+        <p><span>Product Name:</span> {{ product_name }}</p>
+        <p><span>Brand:</span> {{ brand }}</p>
+        <p><span>Health Grade:</span> <span class="health-grade-pill">{{ health_info }}</span></p>
+      </div>
+      <div class="results-allergens">
+        <h3 class="results-allergens-heading">Allergens:</h3>
+        <ul class="results-allergens-list">
+          {% for allergen in allergens %}
+            <li>{{ allergen }}</li>
+          {% empty %}
+            <li>No allergens found.</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="results-details">
+        <h3 class="results-details-heading">Ingredients</h3>
+        <div class="results-details-content">{{ ingredients }}</div>
+        <h2>Raw JSON</h2>
+        <pre class="results-details-content">{{ pretty_product_details }}</pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Script that changes the background of the Health Grade pill
+    // depending on its value.
+    document.addEventListener('DOMContentLoaded', () => {
+    const healthGradePill = document.querySelector('.health-grade-pill');
+    const nutriscoreGrade = '{{ nutriscore_grade }}';
+
+    if (healthGradePill) {
+        const backgroundColor = getBackgroundColor(nutriscoreGrade);
+        healthGradePill.style.backgroundColor = backgroundColor;
+        
+        // If the background color is yellow, change the text color to black
+        // for better readability.
+        if (backgroundColor === '#FFD700') {
+          healthGradePill.style.color = 'black';
+        }
+      }
+    });
+
+    function getBackgroundColor(nutriscoreGrade) {
+      const colorMap = {
+        A: '#41B883', // Green
+        B: '#7BD37B', // Light Green
+        C: '#FFD700', // Yellow
+        D: '#FFA500', // Orange
+        F: '#FF4D4D', // Red
+      };
+
+      return colorMap[nutriscoreGrade] || '';
+    }
+
+  </script>
+</body>
+</html>
