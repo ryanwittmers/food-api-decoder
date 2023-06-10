@@ -19,7 +19,7 @@ This project is a Python web application that allows users to search for product
 
 1. **Clone the repository:**
 ```shell
-   git clone <repository-url> && cd <repository-directory>
+   git clone https://github.com/ryanwittmers/food-api-decoder.git && cd food-api-decoder
 ```
 
 2. **Install the required dependencies:**
