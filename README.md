@@ -1,4 +1,4 @@
-# Food API Decoder
+# Food Barcode Decoder
 This project is a Python web application that allows users to search for product details using barcodes and retrieve health information and ingredients. It utilizes the Open Food Facts API and the Open Food Facts Python SDK.
 
 ## Key Features
