@@ -40,7 +40,7 @@
     // depending on its value.
     document.addEventListener('DOMContentLoaded', () => {
     const healthGradePill = document.querySelector('.health-grade-pill');
-    const nutriscoreGrade = '{{ nutriscore_grade }}';
+    const nutriscoreGrade = '{{ health_info }}';
 
     if (healthGradePill) {
         const backgroundColor = getBackgroundColor(nutriscoreGrade);
