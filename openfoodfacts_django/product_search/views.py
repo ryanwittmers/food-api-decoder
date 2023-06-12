@@ -1,8 +1,8 @@
 import openfoodfacts.products
 import json
 import requests
-import re
 
+from pattern.en import pluralize, singularize
 from django.shortcuts import render
 from .forms import BarcodeForm
 from bs4 import BeautifulSoup
@@ -34,8 +34,21 @@ def search_product(request):
                 pretty_product_details = json.dumps(product, indent=4, sort_keys=True)
 
                 allergens_from_ingredients = product.get('allergens_from_ingredients', "")
-                allergens_list = [allergen.strip().lstrip("en:").capitalize() for allergen in allergens_from_ingredients.split(',')]
+                # Apply normalizations to the allergens to remove the "en:" prefix and singularize the allergens
+                allergens_list = [singularize(allergen.strip().lstrip("en:")).strip().capitalize() for allergen in allergens_from_ingredients.split(',')]
                 allergens = set(allergens_list)
+                
+                # Store the number of ingredients and allergens
+                # If there are no allergens, set num_allergens to None, otherwise, store the amount of allergens.
+                if allergens is None:
+                    num_allergens = None
+                else:
+                    num_allergens = len(allergens)
+
+                if len(ingredients) > 0:
+                    num_ingredients = len(ingredients.split(','))
+                else:
+                    num_ingredients = None
 
                 return render(request, 'results.html', {
                     'form': form,
@@ -45,7 +58,9 @@ def search_product(request):
                     'ingredients': ingredients,
                     'pretty_product_details': pretty_product_details,
                     'allergens': allergens,
-                    'form_submitted' : form_submitted
+                    'form_submitted' : form_submitted,
+                    'num_allergens' : num_allergens,
+                    'num_ingredients' : num_ingredients
                 })
     else:
         form = BarcodeForm()

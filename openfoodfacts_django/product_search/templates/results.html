@@ -6,6 +6,9 @@
 <head>
   <title>Product Results</title>
   <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}?v=1">
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/idea.min.css">
+  <link rel='stylesheet' href='//cdn.jsdelivr.net/npm/hack-font@3.3.0/build/web/hack-subset.css'>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -16,56 +19,33 @@
         <p><span>Brand:</span> {{ brand }}</p>
         <p><span>Health Grade:</span> <span class="health-grade-pill">{{ health_info }}</span></p>
       </div>
-      <div class="results-allergens">
-        <h3 class="results-allergens-heading">Allergens:</h3>
-        <ul class="results-allergens-list">
-          {% for allergen in allergens %}
-            <li>{{ allergen }}</li>
-          {% empty %}
-            <li>No allergens found.</li>
-          {% endfor %}
-        </ul>
-      </div>
-      <div class="results-details">
-        <h3 class="results-details-heading">Ingredients</h3>
-        <div class="results-details-content">{{ ingredients }}</div>
-        <h2>Raw JSON</h2>
-        <pre class="results-details-content">{{ pretty_product_details }}</pre>
-      </div>
+      {% if num_allergens %}
+        <div class="results-allergens">
+          <h3 class="results-allergens-heading">Allergens:</h3>
+          <ul class="results-allergens-list">
+            {% for allergen in allergens %}
+              <li>{{ allergen }}</li>
+            {% empty %}
+              <li>No allergens found.</li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+      {% if num_ingredients %}
+        <div class="results-details">
+          <h3 class="results-details-heading">Ingredients</h3>
+          <div class="ingredients-content">{{ ingredients }}</div>
+          <h2>Raw JSON</h2>
+          <code class="results-details-content">{{ pretty_product_details }}</code>
+        </div>
+      {% else %}
+        <p>No ingredients found.</p>
+      
+      {% endif %}
     </div>
   </div>
 
-  <script>
-    // Script that changes the background of the Health Grade pill
-    // depending on its value.
-    document.addEventListener('DOMContentLoaded', () => {
-    const healthGradePill = document.querySelector('.health-grade-pill');
-    const nutriscoreGrade = '{{ health_info }}';
-
-    if (healthGradePill) {
-        const backgroundColor = getBackgroundColor(nutriscoreGrade);
-        healthGradePill.style.backgroundColor = backgroundColor;
-        
-        // If the background color is yellow, change the text color to black
-        // for better readability.
-        if (backgroundColor === '#FFD700') {
-          healthGradePill.style.color = 'black';
-        }
-      }
-    });
-
-    function getBackgroundColor(nutriscoreGrade) {
-      const colorMap = {
-        A: '#41B883', // Green
-        B: '#7BD37B', // Light Green
-        C: '#FFD700', // Yellow
-        D: '#FFA500', // Orange
-        F: '#FF4D4D', // Red
-      };
-
-      return colorMap[nutriscoreGrade] || '';
-    }
-
-  </script>
+  <script src="{% static 'scripts.js' %}?v=1"></script>
+  <script>hljs.highlightBlock(document.querySelector('code'));</script>
 </body>
 </html>
